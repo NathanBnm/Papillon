@@ -91,16 +91,17 @@ const NewsScreen: Screen<"News"> = ({ route, navigation }) => {
     }
   }, [informations, account.personalization.MagicNews]);
 
-  const renderItem: ListRenderItem<NewsItem> = useCallback(({ item, index }) => (
-    <NewsListItem
-      key={index}
-      index={index}
-      message={item}
-      navigation={navigation}
-      parentMessages={sortedMessages}
-      isED={account.service == AccountService.EcoleDirecte}
-    />
-  ), [navigation, sortedMessages]);
+  const renderItem: ListRenderItem<NewsItem> = useCallback(({ item, index }) => {
+    return (
+        <NewsListItem
+          index={index}
+          message={item}
+          navigation={navigation}
+          parentMessages={sortedMessages}
+          isED={account.service == AccountService.EcoleDirecte}
+        />
+    );
+  }, [navigation, sortedMessages]);
 
   const NoNewsMessage = () => (
     <View
